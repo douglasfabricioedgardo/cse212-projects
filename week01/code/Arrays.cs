@@ -1,3 +1,5 @@
+//authot: douglas fabricio ramirez
+//date: 05/05/2025
 using System;
 using System.Collections.Generic;
 public static class Arrays
