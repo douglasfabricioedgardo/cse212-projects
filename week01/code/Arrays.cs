@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 public static class Arrays
 {
     /// <summary>
@@ -6,14 +8,18 @@ public static class Arrays
     /// integer greater than 0.
     /// </summary>
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
-    public static double[] MultiplesOf(double number, int length)
+   public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Creamos un array de tamaño 'length'
+        double[] multiples = new double[length];
 
-        return []; // replace this return statement with your own
+        // Llenamos el array con los múltiplos de 'number'
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);  // Multiplicamos el número por el índice + 1 para obtener los múltiplos
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +31,18 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Primero, aseguramos que el amount no sea mayor que el tamaño de la lista
+        amount = amount % data.Count;
+
+        // Obtenemos dos segmentos: el final de la lista y el inicio
+        List<int> end = data.GetRange(data.Count - amount, amount); // Los últimos 'amount' elementos
+        List<int> start = data.GetRange(0, data.Count - amount);    // El resto de la lista
+
+        // Limpiamos la lista original
+        data.Clear();
+
+        // Agregamos los segmentos en el nuevo orden
+        data.AddRange(end);
+        data.AddRange(start);
     }
 }
