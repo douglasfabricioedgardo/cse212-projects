@@ -12,14 +12,18 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
    public static double[] MultiplesOf(double number, int length)
     {
-        // Creamos un array de tamaño 'length'
+        // Step 1: Create a new array of doubles with the specified 'length'
         double[] multiples = new double[length];
 
-        // Llenamos el array con los múltiplos de 'number'
+        // Step 2: Loop through the array indices from 0 to length - 1
         for (int i = 0; i < length; i++)
         {
+            // Step 3: For each index, calculate the multiple by multiplying 'number' by (i + 1)
+            // Step 4: Store the result at index 'i' of the array
+            multiples[i] = number * (i + 1);
             multiples[i] = number * (i + 1);  // Multiplicamos el número por el índice + 1 para obtener los múltiplos
         }
+        // Step 5: Return the filled array of multiples
 
         return multiples;
     }
@@ -33,18 +37,24 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // Primero, aseguramos que el amount no sea mayor que el tamaño de la lista
+          // Step 1: Ensure 'amount' is within the bounds of the list size
+        // This handles cases where 'amount' might be equal to or greater than data.Count
         amount = amount % data.Count;
 
-        // Obtenemos dos segmentos: el final de la lista y el inicio
+        // Step 2: Get a sublist of the last 'amount' elements from the original list
         List<int> end = data.GetRange(data.Count - amount, amount); // Los últimos 'amount' elementos
+                // Step 3: Get a sublist of the remaining elements at the beginning of the list
+
         List<int> start = data.GetRange(0, data.Count - amount);    // El resto de la lista
 
-        // Limpiamos la lista original
+        // Step 4: Clear the original list to prepare for inserting rotated elements
+
         data.Clear();
 
-        // Agregamos los segmentos en el nuevo orden
+        // Step 5: Add the end segment first (rotated part)
         data.AddRange(end);
+        // Step 6: Add the start segment after the rotated part
+
         data.AddRange(start);
     }
 }
