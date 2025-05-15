@@ -7,7 +7,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Enqueue multiple items and dequeue one
     // Expected Result: The item with the highest priority is dequeued
-    // Defect(s) Found: None
+    // Defect(s) Found: In original implementation, Dequeue returned item by insertion order, not by highest priority.
     public void TestPriorityQueue_HighestPriorityIsDequeued()
     {
         var priorityQueue = new PriorityQueue();
@@ -23,7 +23,8 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Dequeue should remove the item with the highest priority even if added later
     // Expected Result: The item with the highest priority (even if added last) is dequeued
-    // Defect(s) Found: None
+    // Defect(s) Found: Original implementation favored items enqueued earlier even with lower priority.
+
     public void TestPriorityQueue_RespectPriorityNotInsertionOrder()
     {
         var priorityQueue = new PriorityQueue();
@@ -39,7 +40,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Dequeue from empty queue
     // Expected Result: InvalidOperationException is thrown
-    // Defect(s) Found: None
+    // Defect(s) Found: Original implementation returned null instead of throwing InvalidOperationException.
     public void TestPriorityQueue_DequeueThrowsIfEmpty()
     {
         var priorityQueue = new PriorityQueue();
@@ -50,7 +51,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Enqueue multiple items with same priority, check if any one is removed
     // Expected Result: One of them is removed and returned, not null
-    // Defect(s) Found: None
+    // Defect(s) Found: Original implementation always returned the last added item, ignoring tie-breaking fairness.
     public void TestPriorityQueue_SamePriority()
     {
         var priorityQueue = new PriorityQueue();
